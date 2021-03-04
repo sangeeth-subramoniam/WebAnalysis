@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.htm" %}
+{% load static %}
+
+{% block title %}
+
+Homepage
+
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="jumbotron">
+    <h1>Sentimental Analysis using python</h1>
+    <br>
+    <p>Let's analyse the current trends!</p>
+    <br>
+    <p>let's stream live tweets!</p>
+    <br>
+    <p>let's get Started!</p>
+</div>
+
+<div class="container">
+    <a href="{% url 'testtwee:testtweeindex' %}"> <button class = "btn btn-default centrify">Click here to get started</button></a>
+</div>
+
+
+
+
+{% endblock %}

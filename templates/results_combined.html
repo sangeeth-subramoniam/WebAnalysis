@@ -1,0 +1,230 @@
+{% extends "base.htm" %}
+{% load static %}
+
+{% block title %}
+    results
+{% endblock %}
+
+{% block head %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    
+    var Positive = {{result.0}};
+    var WeaklyPositive = {{result.3}};
+    var StronglyPositive = {{result.1}};
+    var Negative = {{result.2}};
+    var WeaklyNegative = {{result.4}};
+    var StronglyNegative = {{result.5}};
+    var Neutral = {{result.6}};
+    
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Positive',     Positive],
+        ['WPositive',      WeaklyPositive] ,
+        ['SPositive',  StronglyPositive ],
+        ['Negative', Negative ],
+        ['WNegative',   WeaklyNegative  ],
+        ['SNegative',   StronglyNegative  ],
+        ['Neutral',    Neutral ]
+      ]);
+
+      var options = {
+        title: 'Twitter Analysis Report: '
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+      chart.draw(data, options);
+      }
+
+
+    var cPositive = {{res.0}};
+    var cWeaklyPositive = {{res.3}};
+    var cStronglyPositive = {{res.1}};
+    var cNegative = {{res.2}};
+    var cWeaklyNegative = {{res.4}};
+    var cStronglyNegative = {{res.5}};
+    var cNeutral = {{res.6}};
+    
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChartcrit);
+
+    function drawChartcrit() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Positive',     cPositive],
+        ['WPositive',      cWeaklyPositive] ,
+        ['SPositive',  cStronglyPositive ],
+        ['Negative', cNegative ],
+        ['WNegative',   cWeaklyNegative  ],
+        ['SNegative',   cStronglyNegative  ],
+        ['Neutral',    cNeutral ]
+      ]);
+
+      var options = {
+        title: 'Critics Analysis Report: '
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+      chart.draw(data, options);
+      }
+
+
+    var combPositive = {{cum.0}};
+    var combWeaklyPositive = {{cum.3}};
+    var combStronglyPositive = {{cum.1}};
+    var combNegative = {{cum.2}};
+    var combWeaklyNegative = {{cum.4}};
+    var combStronglyNegative = {{cum.5}};
+    var combNeutral = {{cum.6}};
+    
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChartcomb);
+
+    function drawChartcomb() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Positive',     combPositive],
+        ['WPositive',      combWeaklyPositive] ,
+        ['SPositive',  combStronglyPositive ],
+        ['Negative', combNegative ],
+        ['WNegative',   combWeaklyNegative  ],
+        ['SNegative',   combStronglyNegative  ],
+        ['Neutral',    combNeutral ]
+      ]);
+
+      var options = {
+        title: 'Combined Analysis Report: '
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+
+      chart.draw(data, options);
+      }
+
+  </script>
+{% endblock %}
+
+
+
+{% block body %}
+
+
+
+
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-md-12">
+            <div class="row"> 
+                <div class="col-md-12">  
+                    <div class="jumbotron">
+                    {% comment %} {% for items in results %} {% endcomment %}
+                    <h1>Web Data Analysis : </h1>
+                    </div>  
+                    <marquee scrollamount="13"> <h1>{{result.7}}</h1> </marquee>
+                  </div>
+                </div>
+                <div class = "row" >
+                  <div class="col-md-3" style="border:2px solid black; height:500px; margin-bottom : 40px;">                     
+                    <h3> <b> <u> Attributes : </b> </u> </h3><br>
+                    <p><b>Positive : {{ result.0  }}% </b></p>
+                    <p><b>Weakly Positive : {{ result.3 }}% </b></p>
+                    <p><b>Strongly Positive : {{ result.1 }}% </b></p>
+                    <p><b>Negative : {{ result.2 }}%</b> </p>
+                    <p><b>Weakly Negative : {{ result.4 }}% </b></p>
+                    <p><b>Strongly Negative : {{ result.5 }}% </b> </p>
+                    <p><b>Neutral : {{ result.6 }}%</b> </p> <br>
+                </div>
+
+                <div class="col-md-1"> </div>
+                
+                <div class="col-md-8" style="border:2px solid black; margin-bottom : 40px"> 
+                    <div id="piechart1" style="width: 600px; height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div> 
+  </div>
+</div>
+
+
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-md-12">
+            <div class="row"> 
+                <div class="col-md-12">  
+                    <div class="jumbotron">
+                    <h1>Twitter Data Analysis :</h1>
+                    </div>  
+                    <marquee scrollamount="13"><h1>{{res.7}}</h1></marquee>
+                  </div>
+                </div>
+                <div class = "row" >
+                  <div class="col-md-3" style="border:2px solid black; height:500px; margin-bottom : 40px;">                     
+                    <h3> <b> <u> Attributes : </b> </u> </h3><br>
+                    <p><b>Positive : {{ res.0 }} </b></p>
+                    <p><b>Weakly Positive : {{ res.3 }} </b></p>
+                    <p><b>Strongly Positive : {{ res.1 }} </b></p>
+                    <p><b>Negative : {{ res.2 }}</b> </p>
+                    <p><b>Weakly Negative : {{ res.4 }} </b></p>
+                    <p><b>Strongly Negative : {{ res.5 }}</b> </p>
+                    <p><b>Neutral : {{ res.6 }}</b> </p> <br>
+                </div>
+
+                <div class="col-md-1"> </div>
+                
+                <div class="col-md-8" style="border:2px solid black; margin-bottom : 40px"> 
+                    <div id="piechart2" style="width: 600px; height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-md-12">
+            <div class="row"> 
+                <div class="col-md-12">  
+                    <div class="jumbotron">
+                    <h1>Combined Analytic Data</h1>
+                    </div>  
+                    <marquee scrollamount="13"><h1>{{cum.7}}</h1></marquee>
+                  </div>
+                </div>
+                <div class = "row" >
+                  <div class="col-md-3" style="border:2px solid black; height:500px; margin-bottom : 40px;">                     
+                    <h3> <b> <u> Attributes : </b> </u> </h3><br>
+                    <p><b>Positive : {{ cum.0 }} </b></p>
+                    <p><b>Weakly Positive : {{ cum.3 }} </b></p>
+                    <p><b>Strongly Positive : {{ cum.1 }} </b></p>
+                    <p><b>Negative : {{ cum.2 }}</b> </p>
+                    <p><b>Weakly Negative : {{ cum.4 }} </b></p>
+                    <p><b>Strongly Negative : {{ cum.5 }}</b> </p>
+                    <p><b>Neutral : {{ cum.6 }}</b> </p> <br>
+                </div>
+
+                <div class="col-md-1"> </div>
+                
+                <div class="col-md-8" style="border:2px solid black; margin-bottom : 40px"> 
+                    <div id="piechart3" style="width: 600px; height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div> 
+  </div>
+</div>
+{% endblock %}
+

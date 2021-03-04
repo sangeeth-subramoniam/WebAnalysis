@@ -1,0 +1,183 @@
+{% extends "base.htm" %}
+{% load static %}
+{% block head %}
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+<script src = "{% static 'js/twitter.js' %}"></script>  
+
+
+
+
+    <script language = "JavaScript">
+        $(document).ready(function() {
+            var chart = {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            };
+            var title = {
+                text: 'USER ANALYSIS'   
+            };
+            var tooltip = {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            };
+            var plotOptions = {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+            
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}%</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor)||
+                            'black'
+                        }
+                    }
+                }
+            };
+            var series = [{
+                type: 'pie',
+                name: 'Browser share',
+                data: ([
+                    ['positive',       {{result.0 }} ],
+                    ['negative',       {{ result.3 }} ],
+                    ['weakly positive', {{ result.1 }} ],
+                    ['strongly positive',    {{ result.2 }} ],
+                    ['weakly negative',     {{ result.4 }} ],
+                    [ 'strongly negative',   {{ result.5 }} ],
+			        ['neutral', {{ result.6 }} ],
+                ])   
+            }];
+
+            var json = {};   
+            json.chart = chart; 
+            json.title = title;     
+            json.tooltip = tooltip;  
+            json.series = series;
+            json.plotOptions = plotOptions;
+            $('#container').highcharts(json);
+			
+			var title1 = {
+                text: "CRITIC's ANALYSIS"   
+            };
+            var tooltip1 = {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            };
+            var plotOptions1 = {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}%</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor)||
+                        'black'
+                        }
+                    }
+                    }
+                };
+            var series1 = [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                    ['positive',   {{ res.0 }} ],
+                    ['negative',       {{ res.3 }} ],
+                    ['weakly positive', {{ res.1 }} ],
+            
+                    ['strongly positive',    {{ res.2 }} ],
+                    ['weakly negative',     {{ res.4 }} ],
+                    ['strongly negative',   {{ res.5 }} ],
+				    ['neutral', {{ res.6 }} ],
+                    ]
+                }];
+            var json1 = {};   
+            json1.chart = chart; 
+            json1.title = title1;     
+            json1.tooltip = tooltip1;  
+            json1.series = series1;
+            json.plotOptions = plotOptions;
+            $('#container1').highcharts(json1);
+			
+			
+
+		var title2 = {
+            text: 'Cummulative analysis'   
+        };
+            var tooltip2 = {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            };
+            var plotOptions2 = {
+            pie: {
+            allowPointSelect: true, 
+                cursor: 'pointer',
+
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}%</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor)||
+                    'black'
+                }
+        }
+        }
+            };
+            var series2 = [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+            
+                ['positive',   {{ cum.0 }} ],
+                ['negative',       {{ cum.3 }} ],
+                ['weakly positive', {{ cum.1 }} ],
+                
+                ['strongly positive',    {{ cum.2 }} ],
+                ['weakly negative',     {{ cum.4 }} ],
+                ['strongly negative',   {{ cum.5 }} ],
+                ['neutral', {{ cum.6 }} ],
+                ]
+            }];
+
+            var json2 = {};   
+            json2.chart = chart; 
+            json2.title = title2;     
+            json2.tooltip = tooltip2;  
+            json2.series = series2;
+            json.plotOptions = plotOptions2;
+            $('#container2').highcharts(json2);
+			
+			
+			
+			
+			
+			
+        });
+	
+	
+    </script> 
+	
+    
+    <script language = "JavaScript">
+        $(document).ready(function() {
+            var chart = {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+            };
+            
+			
+        });
+    </script> 
+
+{%endblock%}
+
+
+<body>
+	<div>
+        <div id = "container" style = "width: auto; height: 400px; margin: 0 auto"></div>
+	    <div	  id = "container1" style = "width: auto; height: 400px; margin: 0 auto"></div>
+	    <div id="container2"></div>
+	</body>
+</html>

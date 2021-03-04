@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.htm" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Search_Page
+
+{% endblock %}
+
+{% block body %}
+        <h3>PLEASE Enter the data to stream below</h3>
+        <!-- user the enctype attribute because we are uploading images  -->
+        <form enctype="multipart/form-data" method="POST">
+            <div class="container sign-form">
+                {% csrf_token %}
+                
+                {{ search_form |as_bootstrap  }}
+                <!-- {{ user_profileform.as_p }} -->
+                <input type="submit" class = “btn btn-default” name="submit" value="submit">
+                </div>
+            </form>
+        </div>
+
+{% endblock %}

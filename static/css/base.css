@@ -1,0 +1,27 @@
+.centrify{
+    height: 50px;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+
+}
+
+.contact{
+    border: 2px solid black;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0px;
+}
+
+
+
+#myChart {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.zc-ref {
+    display: none;
+}

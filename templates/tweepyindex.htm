@@ -1,0 +1,27 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block title %}
+    tweepy
+{% endblock %}
+
+{% block body %}
+    <h1>Tweepy index</h1>
+    <br><br>
+    <div class="jumbotron">
+        <form  action="" method = "POST">
+            {% csrf_token %}
+            <div class="form-group">            
+            <label for="key"> Enter the KeyWord to stream :</label>
+            <input type="text" name="key" placeholder="Enter the Keyword">
+            <br>
+            <br>
+            <label for="key"> Enter the Number of streams :</label>
+            <input type="text" name="number" placeholder="Enter the Number of streams">
+            <br> <br>
+            <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

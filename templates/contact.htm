@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends "base.htm" %}
+{% load static %}
+
+{% block title %}
+
+Contact
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Contact : </h1>
+    
+    <div class="jumbotron">
+        <h1>Kutty Sathan and CO., </h1>
+        <p>Ponjesly College, CSE Dept</p>
+    </div>
+
+    <h4>Please Fill in the form, So that we can Contact you back !</h4> <br>
+
+    <form class = "contact" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Enter the name :</label>
+            <input type="text" name="name">
+            <br><br>
+            <label for="name">Enter the phone number :</label>
+            <input type="text" name="phone">
+            <br><br>
+            <label for="name">Enter the querry :</label>
+            <input type="text" name="querry">
+            <br><br>
+            <input class = "btn btn-default" type="submit" value="submit">
+
+
+        </div>
+    </form>
+    <br><br>
+
+{% endblock %}

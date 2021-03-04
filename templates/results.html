@@ -1,0 +1,121 @@
+{% extends "base.htm" %}
+{% load static %}
+
+{% block title %}
+    results
+{% endblock %}
+
+{% block head %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    var Positive = {{positive}};
+    var WeaklyPositive = {{wpositive}};
+    var StronglyPositive = {{spositive}};
+    var Negative = {{negative}};
+    var WeaklyNegative = {{wnegative}};
+    var StronglyNegative = {{snegative}};
+    var Neutral = {{neutral}};
+    
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Positive',     Positive],
+          ['WPositive',      WeaklyPositive] ,
+          ['SPositive',  StronglyPositive ],
+          ['Negative', Negative ],
+          ['WNegative',   WeaklyNegative  ],
+          ['SNegative',   StronglyNegative  ],
+          ['Neutral',    Neutral ]
+        ]);
+
+        var options = {
+          title: 'Twitter Analysis Report: '
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+{% endblock %}
+
+
+
+{% block body %}
+
+
+
+
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-md-12">
+            <div class="row"> 
+                <div class="col-md-12">  
+                    <div class="jumbotron">
+                    <h1>Results :</h1>
+                    <h1>{{verd}}</h1>
+                    </div>  
+                  </div>
+                </div>
+                <div class = "row" >
+                  <div class="col-md-2" style="border:2px solid black; height:500px; margin-bottom : 40px;">                     
+                    <h3> <b> <u> Attributes : </b> </u> </h3><br>
+                    <p><b>Positive : {{ positive }} </b></p>
+                    <p><b>Weakly Positive : {{ wpositive }} </b></p>
+                    <p><b>Strongly Positive : {{ spositive }} </b></p>
+                    <p><b>Negative : {{ negative }}</b> </p>
+                    <p><b>Weakly Negative : {{ wnegative }} </b></p>
+                    <p><b>Strongly Negative : {{ snegative }}</b> </p>
+                    <p><b>Neutral : {{ neutral }}</b> </p> <br>
+                </div>
+
+                <div class="col-md-1"> </div>
+                
+                <div class="col-md-9" style="border:2px solid black; margin-bottom : 40px"> 
+                    <div id="piechart" style="width: 600px; height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+    
+</div>
+
+{% endblock %}
+
