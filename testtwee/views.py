@@ -22,6 +22,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
 
+    historylist = []
+
 
     class Analysis:
         
@@ -308,23 +310,29 @@ def index(request):
             plt.show()
 
     if(request.method == "GET"):
-
+            history = Search.objects.all().order_by('-id')[:5]
             search = Inputform()
-            return render(request, "getinput.html" , {"search_form" : search})
+            return render(request, "getinput.html" , {"search_form" : search , "history" : history})
 
-    elif(request.method == "POST"):
-        print('entering')
+    elif(request.method == "POST"):       
+        
 
         subject = request.POST.get('search_term')
         tweets = request.POST.get('no_of_terms')
+        instancedata = Inputform(data=request.POST)
+
+        if(instancedata.is_valid()):
+            instance = instancedata.save()
+            instance.save()
+
         # subject = "covid"
         # tweets = 50
         sa = SentimentAnalysis()
         arr = sa.DownloadData(subject,int(tweets))
-        print('search term is ', subject,' ' ,  tweets)
+        
         a = Analysis(subject,tweets)
         b = a.run()
-        print('over google')
+        
         cummulation = []
         # for one, two in zip(arr,b) :
         for i in range(0,len(arr)):
@@ -332,14 +340,16 @@ def index(request):
                 cummulation.append(b[i])
             else:
                 cummulation.append(((float(arr[i])+float(b[i]))/2.0))
-        print("sdads")
+        
         context = {
             "result" : arr , 
             "res" : b , 
             "cum" : cummulation
         }
         print(' 1 ' , arr , ' /n 2 ' , b , ' /n 3 ' , cummulation)
+        print('histlist are ', historylist)
         return render(request , 'results_combined.html', context)
+        print('histlist are ', historylist)
     
     
         

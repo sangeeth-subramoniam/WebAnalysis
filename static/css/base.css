@@ -25,3 +25,8 @@
 .zc-ref {
     display: none;
 }
+
+.hist{
+    border: 2px solid black;
+    margin-bottom: 4px;
+}
